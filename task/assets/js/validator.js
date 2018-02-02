@@ -29,6 +29,19 @@ $(document).ready(function () {
             
           });
       });
+        $('#email').blur(function(){
+          
+            var ema=$('#email').val(); 
+
+      
+                var respuesta= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(ema); 
+                
+                if(!respuesta){
+                    
+                   alert('formato de email incorrecto') ;
+                }
+         
+          });
   
   /**
    * hacer una funcion que oculte divs etc si esta o no logeado---pendiente

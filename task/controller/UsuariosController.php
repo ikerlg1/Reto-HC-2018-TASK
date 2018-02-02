@@ -79,10 +79,10 @@ class UsuariosController
     public function baja()
     {
         $email = $_POST["email"];
-        //Creamos el objeto empleado
+        //Creamos el objeto usuario
         $usuario = new Usuario($this->conexion);
         $usuario->borrarPorEmail($email);
-        
+        session_destroy();
          header('Location: index.php');
        
     }

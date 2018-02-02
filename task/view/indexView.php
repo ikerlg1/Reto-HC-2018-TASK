@@ -36,6 +36,7 @@
                     <img src="./assets/img" alt="INVITA" style="width:100%; height: 300px;">
                 </div>
             </div>
+            
 
             <!-- Left and right controls -->
             <a class="left carousel-control" href="#myCarousel" data-slide="prev">

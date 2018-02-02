@@ -15,7 +15,8 @@ html {
 }
 /*lettering,tityulos etc*/
 h3{
-    color: black;
+    margin-top: 0;
+    color:rgba(0, 0, 0, .4); 
 }
 h2{height: 40px;
 margin: 0;}
@@ -93,6 +94,9 @@ img#logo{
 .modal-content{
     width: 350px;
 }
+.modal-dialog{
+    height: 500px;
+}
 
 
 /* Interior del contenedor */
@@ -101,8 +105,8 @@ img#logo{
     background-color: rgba(0, 0, 0, .4);
     padding: 20px;
     display: flex;
-    justify-content: center;
-    align-content: center;
+    justify-content: flex-start;
+    align-content: flex-start;
     flex-direction: column;
      align-items:center;
      border: 2px solid grey;
@@ -140,7 +144,9 @@ img {
     border-radius: 20px;
      
 }
-
+#social{
+    margin-top: 700px;
+}
 
 
 
@@ -208,9 +214,7 @@ h1{align-self: center;
     font-weight:bold; 
     z-index: 1;
 }
-#añadirNotaBoton{
-    width:50px; 
-}
+
 
 #chat{
   
@@ -227,21 +231,23 @@ h1{align-self: center;
     /*scroll del chat*/
      overflow-y:scroll;
      min-height: 450px;
+     min-width:250px;
 }
 
 #formChat{
     height: 100px;
     width: 100%;
+    margin-bottom: 0;
     
 }
 #formMOdificar{
     width: 300px;
 }
-#botonNproyecto{
-   margin-left: 35%;
-   width:30%;
-    height: 40px;
-    
+#añadirN{
+    width: 300px;
+    display: none;
+    margin-left:650px;
+   
 }
 #invitar{
     display: flex;
@@ -250,6 +256,7 @@ h1{align-self: center;
     width: 100%;
     height: 80px;
 }
+
 #vencimiento{
     margin-bottom: 95px
 }
@@ -259,19 +266,64 @@ h1{align-self: center;
 a.navbar-brand{
     padding: 0;
 }
-/* botones varios*/
+/* BOTONES VARIOS*/
+.btn-danger2{
+     margin-left:105px;
+}
+#botonBaja{
+   
+    margin-left: 15px;
+}
+#añadirNotaBoton{
+    width:100px; 
+     margin-left: 800px;
+}
+
 .btn-danger{
-    margin-left:155px;
+    margin-left:115px;
     margin-bottom: 25px;
     
 }
+a.danger2{
+    margin-left: 150px;
+}
 .avance{
+    margin-top: 25px;
     margin-left: 160px;
    
 }
-
-
-
+#botonNproyecto{
+    margin-left: 950px;
+   width:200px;
+    height: 40px;
+    
+}
+.verNotas{
+    margin-top: 50px;
+    margin-left: 10px;
+}
+/* NOTAS*/
+.mostrarNotas{
+    margin-top: 30px;
+}
+.notas{
+    margin-top: 50px;
+}
+#listaNota{
+    margin-left: 30px;
+    background-color:#f8efc0;
+    margin: 0;
+    padding: 0;
+}
+#letraNota{
+    margin-right: 60px;
+}
+#elementoNota{
+    height: 30px;
+}
+.mini{
+    margin-bottom: 0;
+}
 #social{
     margin-top: 25px;
    align-content:flex-end;

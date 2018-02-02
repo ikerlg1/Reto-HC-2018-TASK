@@ -72,11 +72,16 @@ class NotaController {
     //FUNCION DELETE
     public function delete (){
         if(!isset($_GET["delete"])){
+            if(isset($_GET["idNota"])){
+           $nota=new Nota($this->conexion);
+           $nota->setIdNota($_GET["idNota"]);
+           $notas=$nota->delete();
            
+           echo $notas;
         }
        
     }
-    
+    }
 
     
 }

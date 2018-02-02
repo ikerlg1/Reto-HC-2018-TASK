@@ -71,7 +71,7 @@
                             var notas=jQuery.parseJSON(datos);
                             
                             notas.forEach(function(nota){
-                                      posicionarmeDom.children('ul').append('<li value="'+nota.idNota+'">'+nota.descripcion+'&nbsp;&nbsp;<span class="glyphicon glyphicon-trash listadoNotas" ></span></li>');  
+                                      posicionarmeDom.children('ul').append('<li id="elementoNota" value="'+nota.idNota+'"><p id="letraNota">'+nota.descripcion+'</p><span class="glyphicon glyphicon-trash listadoNotas" style="color:black;"></span></li>');  
                             });  
                         } 
                    });
@@ -97,6 +97,9 @@
                         }
                     });
                     
+                });
+                  $('#añadirNotaBoton').click(function(){
+                  $('#añadirN').toggle();
                 });
                 
             }); 

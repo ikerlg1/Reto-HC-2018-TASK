@@ -14,7 +14,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
  <main class="dev">
         <!-- Sidebar Perfil -->
         <aside class="lateral dev">
-            <div  style="height:400px">
+            <div >
               <img src="./assets/img/<?php echo $ruta ?>" alt="Foto perfil">
             <?php 
           
@@ -22,14 +22,12 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
               <h1> <?php echo $usuario["nombre"]; ?> </h1>
               <h3> <?php echo $usuario["email"]; ?> </h3>
               <h3>  <?php echo $usuario["telefono"]; ?></h3>
-               <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEditar">Editar</a></button>
-                <hr/>
+             
+             
             <?php } ?>
             </div>
-             <div id="proyecto">
-              
-                
-                 
+             <div >
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalEditar">Editar</a></button>      
           </div>
           <!-- SECTION PARA boton nuevos proyectos-->  
         
@@ -50,17 +48,14 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
         </aside>
         <!-- Contenido PROYECTOS-->
         <section class="contenido dev">
-            <h1>MIS PROYECTOS</h1>
-           
-            
-           
-           
+            <h1>MIS PROYECTOS</h1>    
+              <button type="button" id="botonNproyecto" class="btn btn-info btn-lg" data-toggle="modal" data-target="#proyectoNuevo"><span class="glyphicon glyphicon-plus"></span> Nuevo Proyecto</a></button> 
             <ul class="dev">
                      <?php foreach($data["proyectos"] as $proyecto) {?>
                  <div id="positproyecto">           
                     <img src="./assets/img/amarillo2.png" alt="posit proyecto" id="posit">
                      <div> 
-                           <a href="index.php?controller=proyecto&action=delete&idUsuario=<?php echo $idUsuario ?>&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></a>&nbsp;
+                           <a href="index.php?controller=proyecto&action=delete&idUsuario=<?php echo $idUsuario ?>&idProyecto=<?php echo $proyecto['idProyecto']; ?>" class=" danger2 btn btn-danger"><span class="glyphicon glyphicon-trash"></a>&nbsp;
                            <h3><?php echo $proyecto["nombre"]; ?> </h3>
                          <p>Descripcion:<?php echo $proyecto["descripcion"]; ?> -</p>          
                         <a href="index.php?controller=proyecto&action=proyectoVista&idProyecto=<?php echo $proyecto['idProyecto'];?>" class="btn btn-info btn-lg avance"><span class="glyphicon glyphicon-circle-arrow-right"></a>&nbsp;
@@ -70,7 +65,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             <?php } ?>
                
             </ul>
-            <button type="button" id="botonNproyecto" class="btn btn-info btn-lg" data-toggle="modal" data-target="#proyectoNuevo">Nuevo Proyecto</a></button>    
+             
         </section>
         
 <!-- Modal modificar -->
@@ -92,17 +87,17 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                 Contraseña:<input type="text" name="contrasena" value="<?php echo $ususario["contrasena"]; ?> " class="form-control"/>
                 telefono:<input type="text" name="telefono" value="<?php echo $ususario["telefono"]; ?>" class="form-control"/><br>                
                    <input type="hidden" name="id" value="<?php echo $ususario["idUsuario"]; ?>">
-                      <input type="submit" value="enviar" class="btn btn-success"/>                 
+                      <input type="submit" value="enviar" class="btn btn-success enviar"/>                 
      </form>
                     
                       <?php  }?>
-                    
-                </div>
-                  <div class="modal-footer">
-                        <form action="index.php?controller=usuarios&action=baja" method="post" class="col-lg-5">
+                     <form action="index.php?controller=usuarios&action=baja" method="post" >
                        <input type="hidden" name="email" value="<?php echo $email ?>">
                        <input type="submit"  value="Darme de baja" class="btn btn-danger" id="botonBaja">
-                  </form>
+                  </form> 
+                </div>
+                  <div class="modal-footer">
+                      
                 </div>
               
             </div>
@@ -124,7 +119,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                     <h3>Crear Proyecto</h3>
                     <hr/>
                     Nombre: <input type="text" name="nombre" class="form-control"/>
-                    Descripcion: <input type="text" name="descripcion" class="form-control"/>
+                    Descripcion: <input type="text" name="descripcion" class="form-control"/><br>
                     <input type="submit" value="Crear" class="btn btn-success"/>   
                 </form>
                 </div>
