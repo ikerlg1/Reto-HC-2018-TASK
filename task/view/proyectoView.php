@@ -113,7 +113,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
           <!-- SECTION PARA subir-->  
           <form action="index.php?controller=archivos&action=alta" method="post" class="subirArchivo"  enctype="multipart/form-data">
               <input type="hidden" name="idProyecto" value="<?php echo $_GET['idProyecto']?>">
-                <p>Descripcion:</p><input type="text" name="descrpcion" required="true"class="form-control"/>                               
+                <p>Descripcion:</p><input type="text" name="descripcion" required="true"class="form-control"/>                               
                 <input  type="file" required="true" name="file" id="imagen" />
                           <input type="submit" value="Añadir archivos" class="btn-info""/>  
            </form>

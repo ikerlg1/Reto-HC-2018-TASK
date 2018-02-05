@@ -35,11 +35,14 @@ class ArchivoController {
     
  
     public function crear(){
+         
         if(isset($_POST["descripcion"])){
              $archivo=new Archivo($this->conexion);
             $archivo->setDescripcion($_POST["descripcion"]);
              $archivo->setIdProyecto($_POST["idProyecto"]);
             
+             $url=$archivo->archivo();
+             echo $url;
              $archivo->setUrl($archivo->archivo());
              $save=$archivo->save();
 

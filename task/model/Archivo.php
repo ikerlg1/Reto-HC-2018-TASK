@@ -77,7 +77,7 @@ function setConexion($conexion) {
        
         $consulta->execute();
         $resultados = $consulta->fetchAll();
-        var_dump($resultados);
+     
         $this->conexion = null; 
       
         return $resultados;
