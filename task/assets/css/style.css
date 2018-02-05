@@ -7,7 +7,11 @@ body{
     background-color: #faf2cc;
     background-attachment: fixed;
 }
-
+h1{
+    align-self: center;
+   font-family: Jazz LET, fantasy;
+   color:red; 
+  }
 #jum{
     background-color: #faf2cc;
     height: 80%;

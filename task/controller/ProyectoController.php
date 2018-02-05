@@ -59,6 +59,7 @@ class ProyectoController {
     public function proyectoVista(){
         include './model/Tarea.php';
         include './model/Mensaje.php';
+        include './model/Archivo.php';
     
         $proyecto=new Proyecto($this->conexion); 
         $datosProyecto=$proyecto->getAll($_GET['idProyecto']);
@@ -66,12 +67,15 @@ class ProyectoController {
         $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
          $mensaje=new Mensaje($this->conexion);
         $listaMensajes=$mensaje->getAllByIdProyecto($_GET['idProyecto']);
+        $Archivo=new Archivo($this->conexion);
+        $listaArchivo=$Archivo->getAllById($_GET['idProyecto']);
         
         //Cargamos la vista index y le pasamos valores
         $this->view("proyecto",array(
                 "tareas"=>$listaTareas,
                 "mensajes" =>$listaMensajes,
-                "datosProyecto"=>$datosProyecto
+                "datosProyecto"=>$datosProyecto,
+                "archivos"=>$listaArchivo
             ));
     }
     

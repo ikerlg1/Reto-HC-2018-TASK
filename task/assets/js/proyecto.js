@@ -17,7 +17,8 @@
                             console.log(result);
                             boton.attr("disabled", true);
                             boton.empty();
-                            boton.append("<button class='btn btn-success notas' value='<?php echo $tarea['idTarea']?><span class='glyphicon  glyphicon-thumbs-up'></span></button>");
+                           
+                            boton.append("<button class='btn btn-success' value='<?php echo $tarea['idTarea']?><span class='glyphicon  glyphicon-thumbs-up'></span></button>");
                         }
                     });           
                 }); 
@@ -25,7 +26,7 @@
 
                 $('.notas').click(function(){
                    var boton=$(this);
-                   boton.next().append('<div class="añadirNotas"><div><form method="post" class="form_notas"><hr/>Añadir nota: <textarea name="nota" class="form-control"></textarea></form><button class="btn btn-success submitNota">Añadir</button>&nbsp;<button class="btn btn-primary cerrarNota">Cerrar</button></div>');
+                   boton.next().append('<div class="añadirNotas"><div><form method="post" class="form_notas"><hr/><textarea name="nota" class="form-control"></textarea></form><button class="btn btn-success submitNota">Añadir</button>&nbsp;<button class="btn btn-primary cerrarNota">Cerrar</button></div>');
                    $('.form_notas').attr('action','index.php?controller=nota&action=alta&idTarea='+boton.val());
                 });
       

@@ -250,8 +250,8 @@ class Usuario {
 
     }
 public function foto(){
-    $conexion= $this->conexion;
-        if($_POST){
+$conexion= $this->conexion;
+if($_POST){
     // Creamos la cadena aletoria
         $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
         $cad = "";
@@ -267,44 +267,18 @@ public function foto(){
         $tipo=$sep[1]; // Optenemos el tipo de imagen que es
         $nnombre= gettext($cad.'.'.$tipo);
 
-//para mostrar una imagen significativa para cuando el producto no la tenga
-if($tamano===0){
-    
-    $nnombre="avatar.jpg";
-};
+//para mostrar una imagen significativa para cuando el producto no la teng//
+        if($tamano===0){ 
+                $nnombre="avatar.jpg";
+        };
 // Si el tipo de imagen a subir es el mismo de los permitidos, segimos. Puedes agregar mas tipos de imagen
-move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$nnombre);  // Subimos el archivo
-
-return $nnombre ;
-        
-       
-     
-}
-else echo "tamaño erroneo o imagen no seleccionada";// Si no es el tipo permitido lo decimos
+        move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$nnombre);  // Subimos el archivo
+        return $nnombre ;     
+    }
+    else{ 
+         echo "tamaño erroneo o imagen no seleccionada";        
+    }// Si no es el tipo permitido lo decimos
 }
 
 } 
-function salidaImagenPortada($emailUsua){
- 
- $conexion= $this->conexion;
- $consulta = $conexion -> prepare("SELECT foto  from usuarios where email=:email");
-         $consulta->bindParam(':email', $emailUsua, PDO::PARAM_INT);
-         $consulta->execute();  
-
-         while($imagen=$consulta->fetchObject()){ 
-              
-               $nombreimagen= $imagen->ruta;               
-           }
-if(empty($nombreimagen)){  
-          $nombreimagen="avatar.jpg";
-                $ruta='<a href="index.php?email='.$emailUsua.'"><img class="img-fluid" src="'.$directory."/".$nombreimagen.'"></a>';
-                 echo $ruta;
-                 
-      }
-      else{
-        
-           $ruta='<a href="detalle2.php?idp='.$emailUsua.'"><img  class="img-fluid" src="'.$directory."/".$nombreimagen.'"></a>';
-          echo $ruta;
-      }
-    }    
 }

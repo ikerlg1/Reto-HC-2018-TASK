@@ -16,7 +16,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
   <!-- Sidebar -->
         <aside class="lateral dev">
             <div>
-                <img src="./assets/img/<?php echo $ruta ?>" alt="Foto perfil">
+                <img src="./assets/img/<?php echo $ruta ?>" id="fotoPerfil" alt="Foto perfil">
              
             <?php 
             $usuarios= $_SESSION["usuario"];
@@ -43,7 +43,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
            <form action="index.php?controller=mensaje&action=alta&idProyecto=<?php echo $_GET['idProyecto']?>" method="post" id="formChat">
                   
                <textarea name="mensaje" rows="1" class="form-control" maxlength="30"></textarea><br>
-                    <input type="submit" value="Añadir" class="btn btn-info"/>   
+                    <input type="submit" value="Añadir" class="btn btn-info botonchat"/>   
            </form>
           </div>  
         
@@ -60,8 +60,8 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                <form  action="index.php?controller=tarea&action=alta&idProyecto=<?php echo $_GET['idProyecto']?>" method="post" >
                     <h3>Crear Tarea</h3>
                     <hr/>
-                    Nombre: <input type="text" name="nombre" class="form-control"/>
-                    Fecha de Vencimiento: <input type="date" name="FechaVencimiento" class="form-control"/>
+                    <p> Nombre:</p> <input type="text" name="nombre" class="form-control" required="true"/>
+                    <p> Fecha de Vencimiento: </p><input type="date" name="FechaVencimiento" required="true" class="form-control"/><br>
                     <!-- Realizado: <select name="realizado" class="form-control">
                                     <option value="1">Si</option>
                                     <option value="0">No</option>
@@ -79,11 +79,11 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                               <img src="./assets/img/amarillo2.png" alt="posit proyecto" id="posit">
                           <div>
                               <?php if($tarea["realizado"]==0) {?>
-                                          <button class="btn btn-info realizado"  value="<?php echo $tarea["idTarea"]?>"><span class="glyphicon glyphicon-thumbs-down"></button>
+                                          <button class="btn btn-info realizado"  value="<?php echo $tarea["idTarea"]?>"><span class="glyphicon glyphicon-thumbs-down"></span></button>
                               <?php }else{ ?>
-                                          <button class="btn btn-info realizado"  value="<?php echo $tarea["idTarea"]?>" disabled ></span>Realizado </button>
+                                          <button class="btn btn-success realizado"  value="<?php echo $tarea["idTarea"]?>" disabled ><span class="glyphicon glyphicon-thumbs-up"></span></button>
                               <?php } ?>
-                              <a href="index.php?controller=tarea&action=delete&idTarea=<?php echo $tarea["idTarea"]?>&idProyecto=<?php echo $tarea["idProyecto"]?>" class="btn btn-danger danger2"><span class="glyphicon glyphicon-trash"></a>&nbsp;
+                              <a href="index.php?controller=tarea&action=delete&idTarea=<?php echo $tarea["idTarea"]?>&idProyecto=<?php echo $tarea["idProyecto"]?>" id="trash2" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></a>&nbsp;
                               <p>
                               <h3> <?php echo $tarea["nombre"]; ?> </h3>
                               <p>Vencimiento: <?php echo $tarea["fecha_vencimiento"]; ?></p>
@@ -106,10 +106,17 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
        
           <aside class="lateral dev">
             <div  style="height:80%">
-           
+             <?php foreach($data["archivos"] as $archivo) {?>
+                 <p>Archivo: <?php echo $archivo["descripcion"]; ?><a href="index.php?controller=archivos&action=delete&idTarea=<?php echo $archivo["idArchivo"]?>" id="trash2" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></a></p>
+                  <?php } ?>
             </div>
-          <!-- SECTION PARA EL CHAT -->         
-          <button type="button" class="btn-info">Añadir documentacion</button>       
+          <!-- SECTION PARA subir-->  
+          <form action="index.php?controller=archivos&action=alta" method="post" class="subirArchivo"  enctype="multipart/form-data">
+              <input type="hidden" name="idProyecto" value="<?php echo $_GET['idProyecto']?>">
+                <p>Descripcion:</p><input type="text" name="descrpcion" required="true"class="form-control"/>                               
+                <input  type="file" required="true" name="file" id="imagen" />
+                          <input type="submit" value="Añadir archivos" class="btn-info""/>  
+           </form>
            <div id="social">  
            <!-- Social -->
             <a href="#" class="dev mini">

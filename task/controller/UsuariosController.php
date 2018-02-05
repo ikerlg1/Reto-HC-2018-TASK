@@ -110,13 +110,7 @@ class UsuariosController
         echo $variableretorno;
     }
     //subir foto
- public function foto($email) {
-                
-               $usuario = new Usuario($this->conexion);
-               $usuario->subirFoto($email);
-             
-                
-            }   
+ 
     /**
      * Crea un nuevo empleado a partir de los parámetros POST
      * y vuelve a cargar el index.php.

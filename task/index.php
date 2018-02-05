@@ -50,6 +50,11 @@ function cargarControlador($controller){
             require_once $strFileController;
             $controllerObj=new UsuariosController();
             break;
+         case 'archivos':
+            $strFileController='controller/ArchivoController.php';
+            require_once $strFileController;
+            $controllerObj=new ArchivoController();
+            break;
         default:
             $strFileController='controller/UsuariosController.php';
             require_once $strFileController;

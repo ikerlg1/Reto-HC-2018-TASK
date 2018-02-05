@@ -49,7 +49,6 @@ class Proyecto {
     }
     
      public function getAll($idProyecto){
-
         $consulta = $this->conexion->prepare("SELECT * FROM proyecto WHERE idProyecto =".$idProyecto) ;
         $consulta->execute();
         $resultados = $consulta->fetchObject();
