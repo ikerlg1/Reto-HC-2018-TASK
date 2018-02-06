@@ -77,7 +77,9 @@ class MensajeController {
    
     //FUNCION ACTUALIZAR
     public function actualizar(){
-
+        /*$mensaje=new Mensaje($this->conexion);
+        $mensaje->getAllByIdProyecto($_GET['idProyecto']);*/
+        
         }
         
     //FUNCION DELETE

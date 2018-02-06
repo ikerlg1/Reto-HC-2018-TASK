@@ -60,5 +60,28 @@ class UsuarioProyecto {
         
         return $save;
     } 
+    
+      public function aceptarInvitacion(){        
+        $consulta = $this->conexion->prepare('UPDATE usuario_proyecto SET tipo= :tipo WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
+        $save = $consulta->execute(array(
+            ':idUsuario' => $this->idUsuario,
+            ':idProyecto' => $this->idProyecto,
+            ':tipo' => $this->tipo
+        ));
+        $this->conexion = null; 
+        
+        return $save;
+    } 
+    
+    public function rechazarInvitacion(){        
+        $consulta = $this->conexion->prepare('DELETE FROM usuario_proyecto WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
+        $save = $consulta->execute(array(
+            ':idUsuario' => $this->idUsuario,
+            ':idProyecto' => $this->idProyecto,
+        ));
+        $this->conexion = null; 
+        
+        return $save;
+    }  
 
 }

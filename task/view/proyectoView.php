@@ -23,7 +23,27 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             foreach($usuarios as $ususario) {?>
               <h3> <?php echo $ususario["nombre"]; ?> </h3>     
             <?php } ?>
-                <button type="button" id="botonInvitar" class="btn btn-info" data-toggle="modal" data-target="#proyectoNuevo">Invitar</a></button> 
+              
+              <!-- Invitaciones-->
+              <div>
+                    <label for="invitaciones_proyecto">Usuario a invitar: </label><br>
+                    <input type="text" name="invitaciones_proyecto" id="invitaciones_proyecto" placeholder="Introduce su email"/>
+                    <form id="enviar_invitacion">
+                        <input type="hidden" name="idProyecto" value=<?php echo $_GET['idProyecto'] ?>/>
+                        <input type="hidden" name="idUsuario" value="" id="usuario_id"/>
+                    </form>
+                    <button id="invitar_usuario">Invitar</button>&nbsp;&nbsp;
+                    <button id="cancelar_invitar">Cancelar</button>
+     
+                 </div>
+                
+                <div class="alert alert-success" role="alert" id="alertInfo">
+                    Invitacion Enviada con Exito!!!
+                </div>
+                <div class="alert alert-danger" role="alert" id="alertInfoUsuario">
+                    Usuario no existe
+                </div><!-- Fin: Invitaciones-->
+                
             </div>
             <!-- un div que tenga los participantes del proyecto--> 
  <!-- SECTION PARA EL CHAT -->
@@ -112,8 +132,8 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             </div>
           <!-- SECTION PARA subir-->  
           <form action="index.php?controller=archivos&action=alta" method="post" class="subirArchivo"  enctype="multipart/form-data">
-              <input type="hidden" name="idProyecto" value="<?php echo $_GET['idProyecto']?>">
-                <p>Descripcion:</p><input type="text" name="descripcion" required="true"class="form-control"/>                               
+       
+                <p>Descripcion:</p><input type="text" name="descrpcion" required="true"class="form-control"/>                               
                 <input  type="file" required="true" name="file" id="imagen" />
                           <input type="submit" value="Añadir archivos" class="btn-info""/>  
            </form>
@@ -129,14 +149,8 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             </a>
            
           </div>
-        </aside>
-
-    
-    
-    
+        </aside>  
     </main>
-    
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->

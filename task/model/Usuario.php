@@ -217,6 +217,14 @@ class Usuario {
         $this->conexion = null; //cierre de conexión
         echo "Usuario eliminado";
     }
+    
+    public function buscarPorEmail($email){ 
+        $consulta = $this->conexion->prepare("select idUsuario,nombre,apellido1,apellido2,email,telefono,contrasena FROM `usuario` WHERE email= :email " );
+        $consulta->execute(array('email'=>$email));
+        $usuario= $consulta->fetchObject();
+        $this->conexion=null;
+        return $usuario;
+    }
     public function infoPorEmail($email){ 
         $consulta = $this->conexion->prepare("select idUsuario,nombre,apellido1,apellido2,email,telefono,contrasena,foto FROM `usuario` WHERE email= :email " );
         $consulta->execute(array('email'=>$email));

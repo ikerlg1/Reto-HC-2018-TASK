@@ -35,20 +35,17 @@ class ArchivoController {
     
  
     public function crear(){
-         
         if(isset($_POST["descripcion"])){
              $archivo=new Archivo($this->conexion);
             $archivo->setDescripcion($_POST["descripcion"]);
-             $archivo->setIdProyecto($_POST["idProyecto"]);
-            
-             $url=$archivo->archivo();
-             echo $url;
+             $archivo->setIdProyecto($_GET["idProyecto"]);
+             $id=$_GET["idProyecto"];
              $archivo->setUrl($archivo->archivo());
              $save=$archivo->save();
 
         }
        
-        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$_POST["idProyecto"]);
+        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
        
     }
     

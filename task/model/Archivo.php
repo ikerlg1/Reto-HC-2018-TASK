@@ -72,12 +72,10 @@ function setConexion($conexion) {
         return $save;
     }
  public function getAllById($id){
-   
+     
         $consulta = $this->conexion->prepare("SELECT idArchivo,url,descripcion,idProyecto FROM archivo WHERE idProyecto =".$id);
-       
         $consulta->execute();
         $resultados = $consulta->fetchAll();
-     
         $this->conexion = null; 
       
         return $resultados;
@@ -114,8 +112,7 @@ if($_POST){
         $tipo=$sep[1]; // Optenemos el tipo
         $nnombre= gettext($cad.'.'.$tipo);
                     //mostrar mensale o algo si no se sellcciona archivo
-        if($tamano===0){ 
-            $nnombre ="vacio";
+        if($tamano===0){  
         };
             // Si el tipo de imagen a subir es el mismo de los permitidos, segimos. Puedes agregar mas tipos de imagen
         move_uploaded_file ( $_FILES [ 'file' ][ 'tmp_name' ], $destino . '/' .$nnombre);  // Subimos el archivo

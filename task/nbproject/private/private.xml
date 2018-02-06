@@ -2,24 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/xampp/htdocs/task/model/Nota.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/NotaController.php</file>
-            <file>file:/C:/xampp/htdocs/task/view/indexView.php</file>
-            <file>file:/C:/xampp/htdocs/task/assets/css/stylePerfil.css</file>
-            <file>file:/C:/xampp/htdocs/task/model/Archivo.php</file>
-            <file>file:/C:/xampp/htdocs/task/index.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/UsuariosController.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/ProyectoController.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/TareaController.php</file>
-            <file>file:/C:/xampp/htdocs/task/model/Usuario.php</file>
-            <file>file:/C:/xampp/htdocs/task/model/Proyecto.php</file>
-            <file>file:/C:/xampp/htdocs/task/model/Mensaje.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/PerfilController.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/PrincipalController.php</file>
-            <file>file:/C:/xampp/htdocs/task/view/proyectoView.php</file>
-            <file>file:/C:/xampp/htdocs/task/view/perfilView.php</file>
-            <file>file:/C:/xampp/htdocs/task/controller/ArchivoController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

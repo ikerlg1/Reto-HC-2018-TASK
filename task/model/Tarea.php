@@ -104,5 +104,25 @@ class Tarea {
         
         return $idTarea;
     }
+    
+        public function rowCountTareas($idProyecto){
+        $consulta = $this->conexion->prepare("SELECT COUNT(*) FROM tarea WHERE idProyecto=".$idProyecto );  
+        $consulta->execute();
+        $num_rows = $consulta->fetchColumn();
+        
+        $this->conexion = null; 
+        
+        return $num_rows;
+    }
+    
+    public function rowCountTareasRealizadas($idProyecto){
+        $consulta = $this->conexion->prepare("SELECT COUNT(*) FROM tarea WHERE idProyecto=".$idProyecto." AND realizado = 1" );  
+        $consulta->execute();
+        $num_rows = $consulta->fetchColumn();
+        
+        $this->conexion = null; 
+        
+        return $num_rows;
+    }
 
 }

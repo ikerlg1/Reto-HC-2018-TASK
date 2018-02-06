@@ -45,6 +45,15 @@ class ProyectoController {
             case "delete" :
                 $this->delete();
                 break;
+            case "invitacion" :
+                $this->invitacion();
+                break;
+            case "aceptarInvitacion" :
+                $this->aceptarInvitacion();
+                break;
+            case "deleteInvitacion" :
+                $this->rechazarInvitacion();
+                break;
             default:
                 $this->proyectoVista();
                 break;
@@ -63,10 +72,19 @@ class ProyectoController {
     
         $proyecto=new Proyecto($this->conexion); 
         $datosProyecto=$proyecto->getAll($_GET['idProyecto']);
-         $tarea=new Tarea($this->conexion);
+        
+        $tarea=new Tarea($this->conexion);
         $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
-         $mensaje=new Mensaje($this->conexion);
+        
+        $tarea2=new Tarea($this->conexion);
+        $numTareas=$tarea2->rowCountTareas($_GET['idProyecto']);
+        
+        $tarea3=new Tarea($this->conexion);
+        $numTareasRealizadas=$tarea3->rowCountTareasRealizadas($_GET['idProyecto']);
+        
+        $mensaje=new Mensaje($this->conexion);
         $listaMensajes=$mensaje->getAllByIdProyecto($_GET['idProyecto']);
+        
         $Archivo=new Archivo($this->conexion);
         $listaArchivo=$Archivo->getAllById($_GET['idProyecto']);
         
@@ -75,6 +93,8 @@ class ProyectoController {
                 "tareas"=>$listaTareas,
                 "mensajes" =>$listaMensajes,
                 "datosProyecto"=>$datosProyecto,
+                "numeroTareas"=>$numTareas,
+                "numeroTareasRealizadas"=>$numTareasRealizadas,
                 "archivos"=>$listaArchivo
             ));
     }
@@ -126,6 +146,56 @@ class ProyectoController {
         }*/
         
 
+    }
+    
+     public function aceptarInvitacion(){
+        if(isset($_GET["idUsuario"])){
+
+            include './model/UsuarioProyecto.php';
+
+            $usuarioProyecto = new UsuarioProyecto ($this->conexion);
+            $usuarioProyecto->setIdProyecto($_GET ['idProyecto']);
+            $usuarioProyecto->setIdUsuario($_GET["idUsuario"]);
+            $usuarioProyecto->setTipo("participante");
+            
+            $save = $usuarioProyecto->aceptarInvitacion();
+            
+        }
+        header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
+    }
+    
+    public function rechazarInvitacion(){
+        if(isset($_GET["idUsuario"])){
+
+            include './model/UsuarioProyecto.php';
+
+            $usuarioProyecto = new UsuarioProyecto ($this->conexion);
+            $usuarioProyecto->setIdProyecto($_GET ['idProyecto']);
+            $usuarioProyecto->setIdUsuario($_GET["idUsuario"]);
+
+            $save = $usuarioProyecto->rechazarInvitacion();
+            
+        }
+        header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
+    }
+    
+    public function invitacion(){
+        if(isset($_POST["idProyecto"])){
+
+            include './model/UsuarioProyecto.php';
+            
+            echo 'idPRo: '.$_POST["idProyecto"];
+            echo 'idUSU: '.$_POST["idUsuario"];
+
+            $usuarioProyecto = new UsuarioProyecto ($this->conexion);
+            $usuarioProyecto->setIdProyecto($_POST["idProyecto"]);
+            $usuarioProyecto->setIdUsuario($_POST["idUsuario"]);
+            $usuarioProyecto->setTipo("invitado");
+            
+            $save = $usuarioProyecto->save();
+            
+        }
+        //header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
 
     //FUNCION DELETE

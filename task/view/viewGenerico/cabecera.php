@@ -5,7 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <script src="./assets/js/js.min.js"></script>
         <script src="./assets/js/validator.js"></script>
-         <script src="./assets/js/proyecto.js"></script>
+        <script src="./assets/js/proyecto.js"></script>
+        <script src="./assets/js/proyecto_invitaciones.js"></script>
         
         <link href="./assets/css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">   
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
