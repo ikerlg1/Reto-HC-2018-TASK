@@ -1,19 +1,6 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of mensajeController
- *
- * @author 2gdaw01
- */
 class MensajeController {
-    //put your code here
-      private $conectar;
+    private $conectar;
     private $conexion;
 
     public function __construct() {
@@ -46,21 +33,11 @@ class MensajeController {
                 break;
         }
     }
-    
-
-    public function proyectoVista(){
-        include './model/Tarea.php';
-
-        $proyecto=new Proyecto($this->conexion);
-        $tarea=new Tarea($this->conexion);
-        
-        $listaTareas=$tarea->getAllByIdProyecto($_GET['idProyecto']);
-        
-        //Cargamos la vista index y le pasamos valores
-        $this->view("proyecto",array(
-                "tareas"=>$listaTareas
-            ));
-    }
+     
+   /**
+    * Inserta los mensajes sobre un proyecto 
+    * en la base de datos y vuelve a cargar el index.php.
+    */    
     public function crear(){
         $mensaje=new Mensaje($this->conexion);
         $mensaje->setIdProyecto($_GET['idProyecto']);
@@ -69,24 +46,10 @@ class MensajeController {
         $mensaje->setFecha($fecha);
         
         $mensaje->save();
-        
-        
+
         header("Location: http://localhost/task/index.php?controller=proyecto&action=proyectoVista&idProyecto=".$_GET['idProyecto']);
 
     }
-   
-    //FUNCION ACTUALIZAR
-    public function actualizar(){
-        /*$mensaje=new Mensaje($this->conexion);
-        $mensaje->getAllByIdProyecto($_GET['idProyecto']);*/
-        
-        }
-        
-    //FUNCION DELETE
-    public function delete (){
- 
-    }
-    
     
    /**
     * Crea la vista que le pasemos con los datos indicados.

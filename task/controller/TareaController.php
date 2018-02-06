@@ -1,19 +1,5 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of TareaController
- *
- * @author 2gdaw01
- */
-class TareaController {
-    //put your code here
-            
+class TareaController {        
     private $conectar;
     private $conexion;
 
@@ -26,6 +12,10 @@ class TareaController {
 
     }
     
+   /**
+    * Ejecuta la acción correspondiente.
+    *
+    */    
     public function run($accion){
         switch($accion)
         { 
@@ -43,8 +33,11 @@ class TareaController {
                 break;
         }
     }
-    
- 
+      
+   /**
+    * Inserta una Tarea en la base de datos
+    * y vuelve a cargar el index.php.
+    */     
     public function crear(){
         if(isset($_POST["nombre"])){
 
@@ -59,12 +52,11 @@ class TareaController {
         header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
     }
    
-    //FUNCION ACTUALIZAR
-    public function actualizar(){
-        
-    }
-
-    //FUNCION DELETE
+    
+   /**
+    * Elimina una Tarea de la base de datos
+    * y vuelve a cargar el index.php.
+    */   
     public function delete (){
         if(!isset($_GET["delete"])){
             $tarea=new Tarea($this->conexion);
@@ -74,7 +66,11 @@ class TareaController {
         header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
     }
     
-     //FUNCION REALIZADO
+    
+   /**
+    * Actualiza el estado de realizado de la Tarea en la base de datos
+    *
+    */   
     public function realizado(){
         if(!isset($_GET["realizado"])){
             $tarea=new Tarea($this->conexion);

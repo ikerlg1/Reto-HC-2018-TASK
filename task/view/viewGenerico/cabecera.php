@@ -7,6 +7,7 @@
         <script src="./assets/js/validator.js"></script>
         <script src="./assets/js/proyecto.js"></script>
         <script src="./assets/js/proyecto_invitaciones.js"></script>
+        <script src="./assets/js/registroValidator.js"></script>
         
         <link href="./assets/css/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">   
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -70,7 +71,7 @@
                 </div>
                 <button type="submit" class="btn btn-default">Submit</button>
             </form>-->
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right" id="cerrarSesion">
                 <li><a href="./core/logout.php">Cerrar Sesion</a></li>
 
             </ul>

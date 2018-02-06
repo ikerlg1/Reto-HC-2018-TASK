@@ -3,7 +3,7 @@
 <!-- Jumbotron con carrousel-->
 <header class="jumbotron text-center" id="jum">
     <div class="alert alert-danger" role="alert" id="alert" style="display:none" >Login failed!!</div>
-    <h1>BIENVENIDO!</h1>
+    <h1 id="welcome">BIENVENIDO!</h1>
     <p class="lead">
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalLogin">A trabajar!</a></button>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRegistro">Registrate</a></button>
@@ -26,7 +26,7 @@
                 <div class="modal-body">
                     <form action="index.php?controller=usuarios&action=login" method="post" class="milogin col-lg-5">
                         Email: <input type="text" name="email" id="formEmail" class="form-control"/>
-                        Contraseña:<input type="text" name="contrasena" id="formContra" class="form-control" /><br>
+                        Contraseña:<input type="text" name="contrasena" id="formContra" class="form-control" disabled="true" /><br>
                         <input type="submit" value="enviar" class="btn btn-success"/> 
                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </form>
@@ -52,16 +52,16 @@
                     <h4 class="modal-title">Introduce tus datos</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="index.php?controller=usuarios&action=alta" method="post" class="col-lg-5" enctype="multipart/form-data">
-                        Nombre: <input type="text" name="nombre" class="form-control"/>
-                        Apellido 1º: <input type="text" name="apellido1" class="form-control"/>
-                        Apellido 2º : <input type="text" name="apellido2" class="form-control"/>
-                        Email: <input type="text" name="email" class="form-control"/>
-                        Telefono: <input type="text" name="telefono"  class="form-control"/>
-                        Contraseña:<input type="text" name="contrasena" class="form-control"/>                          
+                    <form action="index.php?controller=usuarios&action=alta" method="post" class="col-lg-12" enctype="multipart/form-data">
+                        Nombre: <input type="text" name="nombre" required="true" id="nombreR" class="form-control"/>
+                        Apellido 1º: <input type="text" name="apellido1" id="ap1" class="form-control"/>
+                        Apellido 2º : <input type="text" name="apellido2" id="ap2" class="form-control"/>
+                        Email: <input type="text" name="email" required="true" id="emailRegistro" class="form-control"/>
+                        Telefono: <input type="text" name="telefono" id="tlf"  class="form-control"/>
+                        Contraseña:<input type="text" name="contrasena" required="true" id="contraR" class="form-control"/>                          
                          <label for="imagen">Foto perfil:</label>
-                          <input  type="file" name="file" id="imagen" />
-                          <input type="submit" value="enviar" class="btn btn-success"/>  
+                         <input  type="file" name="file" id="imagen" /><br>
+                         <input type="submit" value="enviar" id="botonReg" class="btn btn-success" />  
                     </form>
                 </div>
                 <div class="modal-footer">
@@ -83,8 +83,8 @@
         <div class="col-md-4" >
             <div>
                 <div class="caption">
-                    <h3>Quienes somos</h3>
-                    <p>
+                    <h3>Que hacemos</h3>
+                    <p>Herramienta colaborativa,organiza tus tareas,crea proyectos,invita a tus socios,comparte archivos,chatea</p>
                 </div>
             </div>
         </div>
@@ -102,12 +102,12 @@
             </section>  
           </div>
         
-        <div class="col-md-4">
-            <div >
-                <div class="caption" >
+        <div class="col-md-4" >
+            <div  >
+                <div class="caption" id="quienes">
                     <h3>Contactanos</h3>
                     <ul class="list-group colorListGroup" style="color: black;" >                    
-                        <li class="list-group-item"> 01015 Vitoria-Gasteiz, Araba</li>
+                        <li class="list-group-item">Vitoria-Gasteiz, Araba</li>
                         <li class="list-group-item">945 12 19 29</li>
                         <li class="list-group-item">task@task.es</li>
                     </ul>

@@ -1,19 +1,5 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of ProyectoController
- *
- * @author pcwin
- */
 class ProyectoController {
-    //put your code here
-        
     private $conectar;
     private $conexion;
 
@@ -61,9 +47,7 @@ class ProyectoController {
     }
     
    /**
-    * Carga la página principal de empleados con la lista de
-    * empleados que consigue del modelo.
-    *
+    * Carga la vita de proyectos
     */ 
     public function proyectoVista(){
         include './model/Tarea.php';
@@ -88,7 +72,6 @@ class ProyectoController {
         $Archivo=new Archivo($this->conexion);
         $listaArchivo=$Archivo->getAllById($_GET['idProyecto']);
         
-        //Cargamos la vista index y le pasamos valores
         $this->view("proyecto",array(
                 "tareas"=>$listaTareas,
                 "mensajes" =>$listaMensajes,
@@ -100,7 +83,7 @@ class ProyectoController {
     }
     
    /**
-    * Crea un nuevo empleado a partir de los parámetros POST 
+    * Crea un nuevo proyecto a partir de los parámetros 
     * y vuelve a cargar el index.php.
     *
     */
@@ -124,31 +107,13 @@ class ProyectoController {
         }
         header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
-   
-    //FUNCION ACTUALIZAR
-    public function actualizar(){
-        /*if(!isset($_GET["actualizar"])){          
-             //Creamos un usuario
-            $bodega=new Bodega($this->conexion);
-            $bodega->setIdBodega($_GET["id"]);
-            $bodega->setDireccion($_POST["direccion"]);
-            $bodega->setNombre($_POST["nombre"]);
-            $bodega->setEmail($_POST["email"]);
-            $bodega->setTelefono($_POST["telefono"]);
-            $bodega->setNombreContacto($_POST["nombrePersonaContacto"]);
-            $bodega->setFechaFundacion($_POST["fechaFundacion"]);
-            $bodega->setHasRestaurante($_POST["hasRestaurante"]);
-            $bodega->setHasHotel($_POST["hasHotel"]);
-            $actualizar=$bodega->actualizar();
-
-            header('Location: index.php?controller=bodegas&action=detalleBodega&id='.$bodega->getIdBodega());
-
-        }*/
-        
-
-    }
     
-     public function aceptarInvitacion(){
+    /**
+    * Modifica el estado del tipo en usuario_proyecto
+    * y vuelve a cargar el index.php.
+    *
+    */ 
+    public function aceptarInvitacion(){
         if(isset($_GET["idUsuario"])){
 
             include './model/UsuarioProyecto.php';
@@ -164,6 +129,11 @@ class ProyectoController {
         header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
     
+    /**
+    * Elimina de usuario_proyecto el insert con el tipo invitacion
+    * y vuelve a cargar el index.php.
+    *
+    */ 
     public function rechazarInvitacion(){
         if(isset($_GET["idUsuario"])){
 
@@ -178,7 +148,11 @@ class ProyectoController {
         }
         header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
     }
-    
+
+    /**
+    * Inserta en usuario_proyecto una columna del tipo invitacion
+    *
+    */     
     public function invitacion(){
         if(isset($_POST["idProyecto"])){
 
@@ -195,10 +169,13 @@ class ProyectoController {
             $save = $usuarioProyecto->save();
             
         }
-        //header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$_GET["idUsuario"]);
+ 
     }
 
-    //FUNCION DELETE
+   /**
+    * Eliminamos de la base de datos el proyecto
+    *
+    */ 
     public function delete (){
         if(!isset($_GET["delete"])){
             $proyecto=new Proyecto($this->conexion);

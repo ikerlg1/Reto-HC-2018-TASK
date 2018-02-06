@@ -1,18 +1,6 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of PerfilController
- *
- * @author 2gdaw01
- */
 class PerfilController {
-     private $conectar;
+    private $conectar;
     private $conexion;
 
     public function __construct() {
@@ -24,7 +12,7 @@ class PerfilController {
 
     }
 
-   /**
+    /**
     * Ejecuta la acción correspondiente.
     *
     */
@@ -46,7 +34,9 @@ class PerfilController {
         }
     }
     
-
+   /**
+    * Carga la vita de Perfil
+    */ 
     public function perfilUsuario(){
         
         include './model/Proyecto.php';
@@ -68,21 +58,6 @@ class PerfilController {
             ));
     }
 
-    public function crear(){
-
-    }
-   
-    //FUNCION ACTUALIZAR
-    public function actualizar(){
-
-        }
-        
-    //FUNCION DELETE
-    public function delete (){
- 
-    }
-    
-    
    /**
     * Crea la vista que le pasemos con los datos indicados.
     *

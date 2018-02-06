@@ -1,19 +1,6 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of UsuarioProyecto
- *
- * @author pcwin
- */
 class UsuarioProyecto {
-    //put your code here
-    private $table = "usuario_proyeto";
+    private $table = "usuario_proyecto";
     private $conexion;
     
     private $idUsuario;
@@ -47,10 +34,15 @@ class UsuarioProyecto {
     function setTipo($tipo) {
         $this->tipo = $tipo;
     }
-
     
+    /**
+     * Funcion save()
+     * Para registrar la relacion entre 
+     * usuario y proyecto en la base de datos
+     * 
+     */
     public function save(){        
-        $consulta = $this->conexion->prepare('INSERT INTO usuario_proyecto (idUsuario, idProyecto, tipo) VALUES (:idUsuario, :idProyecto, :tipo)');
+        $consulta = $this->conexion->prepare('INSERT INTO '.$this->table.' (idUsuario, idProyecto, tipo) VALUES (:idUsuario, :idProyecto, :tipo)');
         $save = $consulta->execute(array(
             ':idUsuario' => $this->idUsuario,
             ':idProyecto' => $this->idProyecto,
@@ -61,8 +53,15 @@ class UsuarioProyecto {
         return $save;
     } 
     
-      public function aceptarInvitacion(){        
-        $consulta = $this->conexion->prepare('UPDATE usuario_proyecto SET tipo= :tipo WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
+    /**
+     * Funcion aceptarInvitacion()
+     * Modificamos en usuario_proyecto 
+     * el tipo, a participante  
+     * en la base de datos
+     * 
+     */    
+    public function aceptarInvitacion(){        
+        $consulta = $this->conexion->prepare('UPDATE '.$this->table.' SET tipo= :tipo WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
         $save = $consulta->execute(array(
             ':idUsuario' => $this->idUsuario,
             ':idProyecto' => $this->idProyecto,
@@ -71,10 +70,17 @@ class UsuarioProyecto {
         $this->conexion = null; 
         
         return $save;
-    } 
+    }
     
+     /**
+     * Funcion rechazarInvitacion()
+     * Eliminamos en usuario_proyecto 
+     * la insercion hecha, con tipo: invitado  
+     * en la base de datos
+     * 
+     */  
     public function rechazarInvitacion(){        
-        $consulta = $this->conexion->prepare('DELETE FROM usuario_proyecto WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
+        $consulta = $this->conexion->prepare('DELETE FROM '.$this->table.' WHERE idUsuario = :idUsuario AND idProyecto = :idProyecto');
         $save = $consulta->execute(array(
             ':idUsuario' => $this->idUsuario,
             ':idProyecto' => $this->idProyecto,

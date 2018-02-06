@@ -1,5 +1,10 @@
     $(document).ready(function (){
-               $('.realizado').click(function(event){
+                
+                /* Evento: click()
+                 * Con este evento, mediante ajax,  cambiamos el  
+                 * estado de realizado en la base de datos
+                 */                
+                $('.realizado').click(function(event){
                    var boton = $(this);
                    var idTarea=$(this).val();
                     $.ajax({
@@ -16,14 +21,21 @@
                     });           
                 }); 
                 
-
+                /* Evento: click()
+                 * Con este evento, creamos el formulario para   
+                 * registrar notas en la base de datos
+                 */  
                 $('.notas').click(function(){
                    var boton=$(this);
                    boton.next().append('<div class="añadirNotas"><div><form method="post" class="form_notas"><hr/><textarea name="nota" class="form-control"></textarea></form><button class="btn btn-success submitNota">Añadir</button>&nbsp;<button class="btn btn-primary cerrarNota">Cerrar</button></div>');
                    $('.form_notas').attr('action','index.php?controller=nota&action=alta&idTarea='+boton.val());
                 });
-      
-                $('body').on('click','.submitNota',function(){//para los componentes generados dinamicamente
+                
+                /* Evento: click()
+                 * Con este evento, mediante ajax, insertamos  
+                 * la nota en la base de datos
+                 */                  
+                $('body').on('click','.submitNota',function(){
                     var datos = $(this).prev().serialize();
                     var formulario = $(this).prev();
                     var btn=$(this);
@@ -38,9 +50,10 @@
                     });
                 });
                 
-                
-                
-                $('body').on('click','.cerrarNota',function(){//para los componentes generados dinamicamente
+                /* Evento: click()
+                 * Con este evento, eliminamos el formulario de notas
+                 */                  
+                $('body').on('click','.cerrarNota',function(){
                      var formulario = $(this).parent().parent();
                      var btn=$(this);
                      cerrarAñadirNota(formulario);
@@ -50,7 +63,11 @@
                 function cerrarAñadirNota(formulario){
                     formulario.remove();
                 }
-                  
+                
+                /* Evento: click()
+                 * Con este evento, mediante ajax, nos traemos las notas de  
+                 * la tarea y las mostramos en la vista
+                 */                  
                 $('.mostrarNotas').hide();
                 
                 $('.verNotas').click(function(){ 
@@ -74,11 +91,18 @@
                    
                 });
                 
+                /* Evento: click()
+                 * Con este evento, vaciamos y ocultamos la lista de notas
+                 */                  
                 $('.x').click(function(){ 
                    $(this).parent().parent().children('ul').empty();
                    $(this).parent().parent().hide();
                 });
                 
+                /* Evento: click()
+                 * Con este evento, eliminamos la nota   
+                 * de una tarea del proyecto
+                 */                  
                 $('body').on('click','.listadoNotas', function(){
                     var li=$(this).parent();
                     var idNota=$(this).parent().val();
@@ -92,7 +116,12 @@
                     });
                     
                 });
-                  $('#añadirNotaBoton').click(function(){
+                
+                /* Evento: click()
+                 * Con este evento, mostraremos el contenedor
+                 * de las nota de una tarea del proyecto
+                 */  
+                $('#añadirNotaBoton').click(function(){
                   $('#añadirN').toggle();
                 });
 

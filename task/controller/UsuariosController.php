@@ -1,7 +1,6 @@
 <?php
 class UsuariosController
 {
-
     private $conectar;
     private $conexion;
 
@@ -29,31 +28,22 @@ class UsuariosController
                 $this->crear();
                 break;
             case "baja" :
-               
                 $this->baja();
                 break;
             case "detalle" :
-              
                 $this->detalle();
                 break;
             case "update" :
-                case "buscarUsuario" :
-              
-                $this->buscarUsuario();
-                break;
-               
                 $this->update();
                 break;
+            case "buscarUsuario" :
+                $this->buscarUsuario();
+                break;
             case "login" :  
-                
                 $this->login();
                 break;
             case "cerrar" :       
                 $this->cerrarSesion();
-                break;
-            //funcion temporal para cargar vista proyecto
-             case "proyecto" :       
-                $this->proyecto();
                 break;
               case "foto" :       
                 $this->foto();
@@ -65,21 +55,27 @@ class UsuariosController
     }
 
     /**
-     * Carga la página principal de empleados con la lista de
-     * empleados que consigue del modelo.
+     * Carga la página principal 
      *
      */
     public function index()
-    {//Cargamos la vista index y le pasamos valores
+    {
         $this->view("index");
     }
-    
+
+    /**
+     * Cerrar la seseion
+     *
+     */    
     public function cerrarSesion(){
          session_destroy();
-
          header('Location: index.php');
     }
 
+    /**
+     * Parfa eliminar a un usuario de la base de datos
+     *
+     */ 
     public function baja()
     {
         $email = $_POST["email"];
@@ -87,21 +83,18 @@ class UsuariosController
         $usuario = new Usuario($this->conexion);
         $usuario->borrarPorEmail($email);
         session_destroy();
-         header('Location: index.php');
+        header('Location: index.php');
        
     }
 
     /**
-     * da detalles a partir del email del usuario
-     * carga vista con codigo de vista2
-     *
+     * Da detalles a partir del email del usuario
      */
     public function detalle()
     {
         $email = $_GET["email"];
         $usuario = new Usuario($this->conexion);
         $usu = $usuario->infoPorEmail($email);
-      // echo json_encode($datos, JSON_FORCE_OBJECT);
         $variableretorno="";
         if(empty($usu)){
             $variableretorno=0;
@@ -114,28 +107,26 @@ class UsuariosController
         echo $variableretorno;
     }
     
+   /**
+    * Funcion para localizar a u nusuario en la base de datos
+    */    
     public function buscarUsuario()
     {
         $email = $_GET["email"];
         $usuario = new Usuario($this->conexion);
         $usu = $usuario->buscarPorEmail($email);
-      // echo json_encode($datos, JSON_FORCE_OBJECT);
         $variableretorno="";
         if(empty($usu)){
-            $variableretorno=0;
-            
+            $variableretorno=0;            
         }else{
-           
             $variableretorno=$usu;
             echo json_encode($variableretorno,JSON_FORCE_OBJECT);
         }
-        
-        //echo $variableretorno;
     }
-    //subir foto
+
  
     /**
-     * Crea un nuevo empleado a partir de los parámetros POST
+     * Crea un nuevo usuario 
      * y vuelve a cargar el index.php.
      *
      */
@@ -152,11 +143,11 @@ class UsuariosController
             $usuario->setEmail($_POST["email"]);
             $usuario->setTelefono($_POST["telefono"]);
             $usuario->setContrasena($_POST["contrasena"]);
-                 $nombreFoto=$usuario->foto();
-              $usuario->setFoto($nombreFoto);   
+            $nombreFoto=$usuario->foto();
+            $usuario->setFoto($nombreFoto);   
              
             $lastId = $usuario->registro();
-             $usuario = new Usuario($this->conexion);
+            $usuario = new Usuario($this->conexion);
             $datos=$usuario->infoPorID($lastId);
             $_SESSION["usuario"]=$datos;
         }
@@ -164,7 +155,12 @@ class UsuariosController
             header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$lastId);
                    
     }
-
+    
+    /**
+     * Actualiza los datos de un usuario 
+     * y vuelve a cargar el index.php.
+     *
+     */
     public function update()
     {
        
@@ -175,19 +171,21 @@ class UsuariosController
         $usuario->setEmail($_POST["email"]);
         $usuario->setTelefono($_POST["telefono"]);
         $usuario->setContrasena($_POST["contrasena"]);
-        //al ser update hay que coger el id ------recuerda vas por aqui
         $usuario->setId($_POST["id"]);
 
         if($usuario->updateUsuario()){
             $usuario = new Usuario($this->conexion);
-          $reNew=$usuario->infoPorEmail($_POST["email"]);     
+            $reNew=$usuario->infoPorEmail($_POST["email"]);     
             $_SESSION["usuario"]=$reNew;
             $lastId="";
                     foreach ($_SESSION["usuario"] as $usu){$lastId = $usu["idUsuario"];}
         }
           header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$lastId);
     }
-
+    
+    /**
+     * Login de inicio sesion
+     */
     public function login() {  
        
         if (isset($_POST["contrasena"])) {
@@ -199,10 +197,8 @@ class UsuariosController
            foreach ($usuar as $usu){
              
                 if(strcmp($pass,$usu["contrasena"])==0){
-                    //if($pass == $usu["contrasena"] ){
                     //guardamos usuario en sesion y creamos vista
                     $_SESSION["usuario"]=$usuar;
-                    //$this->view("perfil");$idUsuario="";
                     $idUsuario="";
                     foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];}
                     
@@ -214,24 +210,8 @@ class UsuariosController
                 }   
             }
         }
-       
-        
     }
    
-    //  case "proyecto" :       
-           
-    //cerrar la sesion y volver a index
-   
-        public function proyecto() {
-            $email="b";
-             $usuario = new Usuario($this->conexion);
-            $usuar = $usuario->infoPorEmail($email);
-             $_SESSION["usuario"]=$usuar;
-             $id="";
-             foreach ($_SESSION["usuario"] as $usu){$id=$usu["nombre"];}
-             header('Location: index.php?controller=perfil&action=perfilUsuario&idUsuario='.$id);
-        }    
-    
     /**
      * Crea la vista que le pasemos con los datos indicados.
      *

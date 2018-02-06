@@ -1,9 +1,5 @@
-
-
 <?php
 class ArchivoController {
-    //put your code here
-              
     private $conectar;
     private $conexion;
 
@@ -16,28 +12,33 @@ class ArchivoController {
 
     }
     
+    /**
+     * Ejecuta la acción correspondiente.
+     *
+     */
     public function run($accion){
         switch($accion)
         { 
             case "alta" :
                 $this->crear();
                 break;
-           
             case "delete" :
                 $this->delete();
                 break;
             case "mostrarArchivo" :
                 $this->mostrar();
                 break;
-   
         }
     }
     
- 
+    /**
+     * insertar un archivo a la base de datos
+     * y vuelve a cargar el index.php.
+     */
     public function crear(){
         if(isset($_POST["descripcion"])){
              $archivo=new Archivo($this->conexion);
-            $archivo->setDescripcion($_POST["descripcion"]);
+             $archivo->setDescripcion($_POST["descripcion"]);
              $archivo->setIdProyecto($_GET["idProyecto"]);
              $id=$_GET["idProyecto"];
              $archivo->setUrl($archivo->archivo());
@@ -48,7 +49,10 @@ class ArchivoController {
         header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
        
     }
-    
+
+     /**
+     * Recoge todos los datos sobre los archivos de un proyecto
+     */
     public function mostrar(){
         if(isset($_POST["idProyecto"])){
             $archivo=new Archivo($this->conexion);
@@ -60,20 +64,21 @@ class ArchivoController {
 
     }
 
-    //FUNCION DELETE
+    /**
+     * Elimina de la base de datos el archivo de un proyecto
+     */
     public function delete (){
         if(!isset($_GET["delete"])){
             if(isset($_GET["idArchivo"])){
-           $archivo=new Archivo($this->conexion);
-         $archivo->setIdArchivo($_GET["idArchivo"]);
-           $archivos=$archivo->delete();
+                $archivo=new Archivo($this->conexion);
+                $archivo->setIdArchivo($_GET["idArchivo"]);
+                $archivos=$archivo->delete();
            
-           echo $archivo;
-        }
+                echo $archivo;
+            }
        
-    }
+        }
     }
 
-    
 }
 

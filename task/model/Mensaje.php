@@ -1,22 +1,9 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Mensaje
- *
- * @author 2gdaw01
- */
 class Mensaje {
-    //put your code here
     private $table = "mensaje";
     private $conexion;
     
-     function __construct($conexion) {
+    function __construct($conexion) {
         $this->conexion = $conexion;
     }
     
@@ -56,9 +43,15 @@ class Mensaje {
     function setIdProyecto($idProyecto) {
         $this->idProyecto = $idProyecto;
     }
-
-     public function save(){
-        $consulta = $this->conexion->prepare("INSERT INTO mensaje (descripcion, fecha, idProyecto) VALUES (:descripcion, :fecha, :idProyecto)");
+    
+    
+    /**
+     * Funcion save()
+     * Para insertar los mensajes en la tabla correspondiente 
+     * 
+     */
+    public function save(){
+        $consulta = $this->conexion->prepare("INSERT INTO ".$this->table." (descripcion, fecha, idProyecto) VALUES (:descripcion, :fecha, :idProyecto)");
         $save = $consulta->execute(array(
             "descripcion" => $this->descripcion,
             "fecha" => $this->fecha,
@@ -69,8 +62,13 @@ class Mensaje {
        return $save;
     }   
     
+    /**
+     * Funcion getAllByIdProyecto()
+     * Para recoger los mensajes de la tabla y mostrarlos
+     * en la vista segun el proyecto que sea
+     */
      public function getAllByIdProyecto($idProyecto){
-        $consulta = $this->conexion->prepare("SELECT idMensaje, descripcion, fecha, idProyecto FROM mensaje WHERE idProyecto =".$idProyecto." order BY idMensaje DESC");
+        $consulta = $this->conexion->prepare("SELECT idMensaje, descripcion, fecha, idProyecto FROM ".$this->table." WHERE idProyecto =".$idProyecto." order BY idMensaje DESC");
         $consulta->execute();
         $resultados = $consulta->fetchAll();
         $this->conexion = null; 

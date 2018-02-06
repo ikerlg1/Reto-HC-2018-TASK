@@ -1,18 +1,5 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Notas
- *
- * @author 2gdaw01
- */
 class Nota {
-    //put your code here
     private $table = "nota";
     private $conexion;
     
@@ -47,10 +34,14 @@ class Nota {
     function setDescripcion($descripcion) {
         $this->descripcion = $descripcion;
     }
-
     
+    /**
+     * Funcion save()
+     * Para insertar las notas en la tabla correspondiente 
+     * 
+     */
     public function save(){
-        $consulta = $this->conexion->prepare("INSERT INTO nota (idTarea, descripcion) VALUES (:idTarea, :descripcion)"); 
+        $consulta = $this->conexion->prepare("INSERT INTO ".$this->table." (idTarea, descripcion) VALUES (:idTarea, :descripcion)"); 
         $save = $consulta->execute(array(
             "idTarea" => $this->idTarea,
             "descripcion" => $this->descripcion
@@ -61,18 +52,27 @@ class Nota {
         return $save;
     }
     
+    /**
+    * Funcion getAllByIdTarea()
+    * Para recoger todas las notas correspondiente a la tarea 
+    * y mostrarlo en la vista
+    */
     public function getAllByIdTarea($idTarea){
-        $consulta = $this->conexion->prepare("SELECT idNota, idTarea, descripcion FROM nota WHERE idTarea =".$idTarea);
+        $consulta = $this->conexion->prepare("SELECT idNota, idTarea, descripcion FROM ".$this->table." WHERE idTarea =".$idTarea);
         $consulta->execute();
         $resultados = $consulta->fetchAll();
         $this->conexion = null; 
         return $resultados;
        
-    }   
-    
+    } 
+
+    /**
+    * Funcion delete()
+    * Para eliminar las notas 
+    */
     public function delete(){
         
-        $consulta = $this->conexion->prepare("DELETE FROM nota WHERE idNota = :idNota"); 
+        $consulta = $this->conexion->prepare("DELETE FROM ".$this->table." WHERE idNota = :idNota"); 
         $consulta->execute(array(
             "idNota" => $this->idNota,
         ));

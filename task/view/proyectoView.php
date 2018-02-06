@@ -23,7 +23,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             foreach($usuarios as $ususario) {?>
               <h3> <?php echo $ususario["nombre"]; ?> </h3>     
             <?php } ?>
-              
+            
               <!-- Invitaciones-->
               <div>
                     <label for="invitaciones_proyecto">Usuario a invitar: </label><br>

@@ -1,19 +1,5 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of NotaController
- *
- * @author 2gdaw01
- */
-class NotaController {
-    //put your code here
-              
+class NotaController {          
     private $conectar;
     private $conexion;
 
@@ -26,6 +12,10 @@ class NotaController {
 
     }
     
+    /**
+    * Ejecuta la acción correspondiente.
+    *
+    */
     public function run($accion){
         switch($accion)
         { 
@@ -45,7 +35,10 @@ class NotaController {
         }
     }
     
- 
+   /**
+    * Crea una Nota sobre una Tarea 
+    *
+    */
     public function crear(){
         if(isset($_POST["nota"])){
              $nota=new Nota($this->conexion);
@@ -58,29 +51,33 @@ class NotaController {
        
     }
     
+   /**
+    * Recoge todas las notas 
+    * sobre una Tarea
+    *
+    */
     public function mostrarNotas(){
         if(isset($_POST["idTarea"])){
              $nota=new Nota($this->conexion);
              $notas=$nota->getAllByIdTarea($_POST["idTarea"]);
 
         }
-        
         echo json_encode($notas);
-
     }
-
-    //FUNCION DELETE
+    
+   /**
+    * Elimina una nota de una Tarea
+    */
     public function delete (){
         if(!isset($_GET["delete"])){
             if(isset($_GET["idNota"])){
-           $nota=new Nota($this->conexion);
-           $nota->setIdNota($_GET["idNota"]);
-           $notas=$nota->delete();
-           
-           echo $notas;
+                $nota=new Nota($this->conexion);
+                $nota->setIdNota($_GET["idNota"]);
+                $notas=$nota->delete();
+
+                echo $notas;
+            }
         }
-       
-    }
     }
 
     
