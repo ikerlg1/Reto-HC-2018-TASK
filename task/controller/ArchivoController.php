@@ -1,10 +1,14 @@
+
+
 <?php
 class ArchivoController {
+    //put your code here
+              
     private $conectar;
     private $conexion;
 
     public function __construct() {
-		require_once  __DIR__ . "/../core/Conectar.php";
+        require_once  __DIR__ . "/../core/Conectar.php";
         require_once  __DIR__ . "/../model/Archivo.php";
         
         $this->conectar=new Conectar();
@@ -12,73 +16,84 @@ class ArchivoController {
 
     }
     
-    /**
-     * Ejecuta la acción correspondiente.
-     *
-     */
     public function run($accion){
         switch($accion)
         { 
             case "alta" :
                 $this->crear();
                 break;
+           
             case "delete" :
+            
                 $this->delete();
                 break;
-            case "mostrarArchivo" :
-                $this->mostrar();
+            case "bajar" :
+                $this->bajar();
                 break;
+   
         }
     }
     
-    /**
-     * insertar un archivo a la base de datos
-     * y vuelve a cargar el index.php.
-     */
+ 
     public function crear(){
+         
         if(isset($_POST["descripcion"])){
              $archivo=new Archivo($this->conexion);
-             $archivo->setDescripcion($_POST["descripcion"]);
-             $archivo->setIdProyecto($_GET["idProyecto"]);
-             $id=$_GET["idProyecto"];
-             $archivo->setUrl($archivo->archivo());
+             echo $_POST["descripcion"];
+            $archivo->setDescripcion($_POST["descripcion"]);
+            
+             $archivo->setIdProyecto($_POST["idProyecto"]);
+            
+             $url=$archivo->archivo();
+           
+             $archivo->setUrl($url);
              $save=$archivo->save();
 
         }
        
-        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$id);
+        header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$_POST["idProyecto"]);
        
     }
-
-     /**
-     * Recoge todos los datos sobre los archivos de un proyecto
-     */
-    public function mostrar(){
-        if(isset($_POST["idProyecto"])){
+    
+    public function bajar(){
+        if(isset($_GET["idArchivo"])){
             $archivo=new Archivo($this->conexion);
-            $archivos=$archivo->getAllById($_POST["idProyecto"]);
-
+            $archivos=$archivo->getAllByIdArchivo($_GET["idArchivo"]);
+          
+        }
+        foreach ( $archivos as $archivo){
+           
+           $enlace=$archivo["url"];
+          
         }
         
-        echo  $archivos;
+       $archi = basename($enlace);
+
+$ruta = 'assets/arch/'.$archi;
+
+   header('Content-Type: application/force-download');
+   header('Content-Disposition: attachment; filename='.$archi);
+   header('Content-Transfer-Encoding: binary');
+   header('Content-Length: '.filesize($ruta));
+
+   readfile($ruta);
+
 
     }
 
-    /**
-     * Elimina de la base de datos el archivo de un proyecto
-     */
-    public function delete (){
-        if(!isset($_GET["delete"])){
-            if(isset($_GET["idArchivo"])){
-                $archivo=new Archivo($this->conexion);
-                $archivo->setIdArchivo($_GET["idArchivo"]);
-                $archivos=$archivo->delete();
-           
-                echo $archivo;
-            }
-       
+    //FUNCION DELETE
+public function delete (){
+    if(!isset($_GET["delete"])){
+        if(isset($_GET["idArchivo"])){               
+         $archivo=new Archivo($this->conexion);
+         $archivo->setIdArchivo($_GET["idArchivo"]);
+           $archivos=$archivo->delete();         
         }
+       
     }
+     header('Location: index.php?controller=proyecto&action=proyectoVista&idProyecto='.$_GET["idProyecto"]);
+}
 
+    
 }
 

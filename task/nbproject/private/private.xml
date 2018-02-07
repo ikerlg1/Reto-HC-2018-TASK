@@ -3,18 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/xampp/htdocs/task/model/Usuario.php</file>
             <file>file:/C:/xampp/htdocs/task/view/viewGenerico/cabecera.php</file>
-            <file>file:/C:/xampp/htdocs/task/model/Mensaje.php</file>
             <file>file:/C:/xampp/htdocs/task/view/indexView.php</file>
             <file>file:/C:/xampp/htdocs/task/assets/css/stylePerfil.css</file>
-            <file>file:/C:/xampp/htdocs/task/assets/css/style.css</file>
-            <file>file:/C:/xampp/htdocs/task/index.php</file>
-            <file>file:/C:/xampp/htdocs/task/assets/js/proyecto_invitaciones.js</file>
+            <file>file:/C:/xampp/htdocs/task/model/Archivo.php</file>
             <file>file:/C:/xampp/htdocs/task/view/proyectoView.php</file>
             <file>file:/C:/xampp/htdocs/task/controller/ProyectoController.php</file>
             <file>file:/C:/xampp/htdocs/task/controller/UsuariosController.php</file>
             <file>file:/C:/xampp/htdocs/task/model/UsuarioProyecto.php</file>
             <file>file:/C:/xampp/htdocs/task/view/perfilView.php</file>
+            <file>file:/C:/xampp/htdocs/task/controller/ArchivoController.php</file>
         </group>
     </open-files>
 </project-private>

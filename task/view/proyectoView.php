@@ -2,7 +2,7 @@
 
  <?php
 $usuarios= $_SESSION["usuario"]; 
-include_once '.\view\viewGenerico\cabecera.php'; 
+ include_once './view/viewGenerico/cabecera.php';  
 
 $idUsuario="";
 $email="";
@@ -15,7 +15,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
  <main class="dev">
   <!-- Sidebar -->
         <aside class="lateral dev">
-            <div>
+            <div id="datosPerfil">
                 <img src="./assets/img/<?php echo $ruta ?>" id="fotoPerfil" alt="Foto perfil">
              
             <?php 
@@ -32,8 +32,8 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                         <input type="hidden" name="idProyecto" value=<?php echo $_GET['idProyecto'] ?>/>
                         <input type="hidden" name="idUsuario" value="" id="usuario_id"/>
                     </form>
-                    <button id="invitar_usuario">Invitar</button>&nbsp;&nbsp;
-                    <button id="cancelar_invitar">Cancelar</button>
+                    <button class="btn btn-info" id="invitar_usuario">Invitar</button>&nbsp;&nbsp;
+                    <button class="btn btn-info" id="cancelar_invitar">Cancelar</button>
      
                  </div>
                 
@@ -45,6 +45,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
                 </div><!-- Fin: Invitaciones-->
                 
             </div>
+            <hr>
             <!-- un div que tenga los participantes del proyecto--> 
  <!-- SECTION PARA EL CHAT -->
            <h1>CHAT</h1>   
@@ -62,7 +63,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             <div id="insertChat">
            <form action="index.php?controller=mensaje&action=alta&idProyecto=<?php echo $_GET['idProyecto']?>" method="post" id="formChat">
                   
-               <textarea name="mensaje" rows="1" class="form-control" maxlength="30"></textarea><br>
+               <textarea name="mensaje" rows="1" class="form-control" maxlength="30"></textarea>
                     <input type="submit" value="Añadir" class="btn btn-info botonchat"/>   
            </form>
           </div>  
@@ -125,31 +126,35 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
   <!-- modal añadir tareas-->
        
           <aside class="lateral dev">
-            <div  style="height:80%">
-             <?php foreach($data["archivos"] as $archivo) {?>
-                 <p>Archivo: <?php echo $archivo["descripcion"]; ?><a href="index.php?controller=archivos&action=delete&idTarea=<?php echo $archivo["idArchivo"]?>" id="trash2" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></a></p>
-                  <?php } ?>
+              <h1>Archivos</h1>
+              <div id="archivosPanel" style="height:80%">
+                <?php foreach($data["archivos"] as $archivo) {?>
+                  <div id="unArchivo">
+                Archivo: <a href="index.php?controller=archivos&action=bajar&idArchivo=<?php echo $archivo["idArchivo"] ?>"> <?php echo $archivo["descripcion"] ?></a>
+                         <a href="index.php?controller=archivos&action=delete&idArchivo=<?php echo $archivo["idArchivo"]?>&idProyecto=<?php echo $_GET['idProyecto']?>" id="trash3" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></a>
+                  </div>       
+                 <?php } ?>
             </div>
           <!-- SECTION PARA subir-->  
           <form action="index.php?controller=archivos&action=alta" method="post" class="subirArchivo"  enctype="multipart/form-data">
-       
-                <p>Descripcion:</p><input type="text" name="descrpcion" required="true"class="form-control"/>                               
-                <input  type="file" required="true" name="file" id="imagen" />
-                          <input type="submit" value="Añadir archivos" class="btn-info""/>  
+              <input type="hidden"  name="idProyecto" value="<?php echo $_GET['idProyecto']?>">
+              <p style="padding: 0;">Descripcion:<input type="text" id="insertP" name="descripcion" value="" maxlength="12" required="true" class="form-control"/></p>                              
+              <input  type="file" required="true" name="file" id="imagen" /><br>
+               <input type="submit" value="Añadir archivos" class="btn btn-info""/>  
            </form>
            <div id="social">  
            <!-- Social -->
-            <a href="#" class="dev mini">
+            <a href="mailto:" class="dev mini">
                 <img src="./assets/img/mail.png" alt="Correo-e">
                
             </a>
-            <a href="#" class="dev mini">
+            <a href="http://twitter.com/home" class="dev mini">
                 <img src="./assets/img/twitter.png" alt="Twitter">
                 
             </a>
            
           </div>
-        </aside>  
+        </aside>
     </main>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

@@ -1,11 +1,11 @@
  <!-- Cabecera-->  
- <?php include_once '.\view\viewGenerico\cabecera.php';  ?> 
+ <?php include_once './view/viewGenerico/cabecera.php';  ?> 
 <!-- Jumbotron con carrousel-->
 <header class="jumbotron text-center" id="jum">
     <div class="alert alert-danger" role="alert" id="alert" style="display:none" >Login failed!!</div>
     <h1 id="welcome">BIENVENIDO!</h1>
     <p class="lead">
-        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalLogin">A trabajar!</a></button>
+        <button type="button" class="btn btn-info btn-lg" id="botonLogin" data-toggle="modal" data-target="#modalLogin">A trabajar!</a></button>
         <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#modalRegistro">Registrate</a></button>
     </p>
 </header>
