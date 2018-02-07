@@ -1,0 +1,102 @@
+
+
+html,body {
+    width: 100%;
+    height:100%;
+}
+body{
+    
+    background-color: #faf2cc;
+    background-attachment: fixed;
+}
+ /* estilo bienvenida */
+#welcome{
+    text-align: center;
+   font-family: Jazz LET, fantasy;
+     color:rgba(0, 0, 0, .4); 
+}
+
+#jum{
+    background-color: #faf2cc;
+    height: 80%;
+    margin-top: 0;
+    margin-bottom: 0px;
+    background-image: url(../img/logo.png);
+    color: white;
+    height:65%;
+    background-Repeat:no-repeat;
+    background-position: center center;
+    padding: 0;
+}
+.jumbotron{
+    margin-top: 30px;
+}
+ /* posicionar logo y estilo barra de navegacion */
+a.navbar-brand{
+    padding: 0;
+}
+li.active{
+    margin-top: 5px;
+}
+#misP{
+    display: none;
+}
+.navbar.navbar-default{
+    padding-bottom: 25px;
+}
+#cerrarSesion{
+    display: none;
+    
+}
+.modal-dialog{
+    width: 400px;
+}
+
+
+ /* Footer------------------------------------------------- */
+footer{
+    position: fixed-botton;
+    width: 100%; 
+    background-color: #66afe9;
+    text-align: center; 
+    height: 250px;
+    margin-bottom: 0;
+}
+#quienes{
+    margin-left: 10px;
+}
+
+.redes{
+    
+    font-size: 1.5em;
+}
+
+#myCarousel{
+    position: relative;
+    margin-top: 55px;
+    
+   
+}
+#logo{
+    height: 75px;
+    width: 75px;
+}
+
+li{
+    margin-top: 10px;
+}
+.modal-footer{
+    border-top: transparent;
+}
+
+
+#cajaLogin{
+   
+     width: 400px;
+}
+.milogin{
+    width: 350px;
+}
+.modal-title{
+    text-align: center;
+}
