@@ -74,7 +74,7 @@ foreach ($_SESSION["usuario"] as $usu){$idUsuario= $usu["idUsuario"];$email=$usu
             <h1><?php echo strtoupper($data['datosProyecto']->nombre) ?></h1>
      <!-- boton añadir notas -->            
             <a href="#" class="btn btn-info btn-lg" id="añadirNotaBoton">
-                  <span class="glyphicon glyphicon-plus"></span> Notas
+                  <span class="glyphicon glyphicon-plus"></span> Tarea
              </a>
      <!-- invisible hasta pulsar boton -->        
              <div id="añadirN">
